@@ -4,8 +4,8 @@ export const profile = {
   location: 'Based in the Philippines',
   bio: 'I am Yancy Allen and I am currently a computer science student at Polytechnic University of the Philippines. Aspiring to become an IT Professional',
   email: 'tiburcioyancy@gmail.com',
-  photo: '',
-  yearsExperience: 2,
+  photo: 'src/assets/661758638_4310337749282275_4646094461440985142_n (1).jpg',
+  yearsExperience: 1,
   social: {
     github: 'https://github.com/',
     linkedin: 'https://www.linkedin.com/',
@@ -28,5 +28,6 @@ export const projects = [
 ]
 
 export const certifications = [
-  { title: 'Associate Data Engineer', issuer: 'DataCamp', year: '2026'}
+  { title: 'Associate Data Engineer', issuer: 'DataCamp', year: '2026'},
+  { title: 'Github Foundations', issuer: 'DataCamp', year: '2026'}
 ]
