@@ -2,14 +2,14 @@ export const profile = {
   name: 'Allen',
   role: 'Web Developer · Data Engineer · Problem solver',
   location: 'Based in the Philippines',
-  bio: 'I build thoughtful digital experiences that feel as good as they function. I care about clear systems, small details, and making complex things pleasantly simple.',
-  email: 'hello@allen.dev'
+  bio: 'I am Yancy Allen and I am currently a computer science student at Polytechnic University of the Philippines. Aspiring to become an IT Professional',
+  email: 'tiburcioyancy@gmail.com'
 }
 
 export const skills = [
-  ['Frontend', 'React, TypeScript, Next.js', 92],
-  ['Interface design', 'Figma, systems, prototyping', 88],
-  ['Backend', 'Node.js, APIs, databases', 80],
+  ['Frontend', 'React, TypeScript, Next.js', 70],
+  ['Data Engineering', 'Data Architecture, ETL/ELT, SQL', 88],
+  ['Backend', 'Node.js, APIs, databases', 67],
   ['Workflow', 'Git, testing, deployment', 85]
 ]
 
@@ -21,7 +21,7 @@ export const projects = [
 ]
 
 export const certifications = [
-  ['Google UX Design', 'Google', '2025'],
-  ['AWS Cloud Practitioner', 'Amazon Web Services', '2024'],
-  ['Responsive Web Design', 'freeCodeCamp', '2024']
+  { title: 'Associate Data Engineer', issuer: 'DataCamp', year: '2026'},
+  { title: 'AWS Cloud Practitioner', issuer: 'Amazon Web Services', year: '2024'},
+  { title: 'Responsive Web Design', issuer: 'freeCodeCamp', year: '2024'}
 ]

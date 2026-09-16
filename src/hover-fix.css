@@ -1,0 +1,13 @@
+/* Full-card theme inversion: the color spreads from centre to every edge. */
+.invert-card::before {
+  background: var(--inverse);
+  clip-path: circle(0% at 50% 50%);
+  transform: none;
+  transition: clip-path 900ms cubic-bezier(.16, 1, .3, 1);
+}
+
+.invert-card:hover::before,
+.invert-card:focus-within::before {
+  clip-path: circle(150% at 50% 50%);
+  transform: none;
+}
