@@ -3,7 +3,14 @@ export const profile = {
   role: 'Web Developer · Data Engineer · Problem solver',
   location: 'Based in the Philippines',
   bio: 'I am Yancy Allen and I am currently a computer science student at Polytechnic University of the Philippines. Aspiring to become an IT Professional',
-  email: 'tiburcioyancy@gmail.com'
+  email: 'tiburcioyancy@gmail.com',
+  photo: '',
+  yearsExperience: 2,
+  social: {
+    github: 'https://github.com/',
+    linkedin: 'https://www.linkedin.com/',
+    facebook: 'https://www.facebook.com/'
+  }
 }
 
 export const skills = [
@@ -21,7 +28,5 @@ export const projects = [
 ]
 
 export const certifications = [
-  { title: 'Associate Data Engineer', issuer: 'DataCamp', year: '2026'},
-  { title: 'AWS Cloud Practitioner', issuer: 'Amazon Web Services', year: '2024'},
-  { title: 'Responsive Web Design', issuer: 'freeCodeCamp', year: '2024'}
+  { title: 'Associate Data Engineer', issuer: 'DataCamp', year: '2026'}
 ]
