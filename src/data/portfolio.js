@@ -4,7 +4,7 @@ export const profile = {
   location: 'Based in the Philippines',
   bio: 'I am Yancy Allen and I am currently a computer science student at Polytechnic University of the Philippines. Aspiring to become an IT Professional',
   email: 'tiburcioyancy@gmail.com',
-  photo: 'src/assets/661758638_4310337749282275_4646094461440985142_n (1).jpg',
+  photo: 'public/projects/661758638_4310337749282275_4646094461440985142_n (1).jpg',
   yearsExperience: 0,
   social: {
     github: 'https://github.com/yncyyalln',
