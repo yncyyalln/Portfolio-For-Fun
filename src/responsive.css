@@ -1,0 +1,75 @@
+/* Final responsive pass: preserve the desktop system while making intermediate and touch layouts intentional. */
+html,body,#root{max-width:100%;overflow-x:clip}
+img,video{max-width:100%}
+button,a{-webkit-tap-highlight-color:transparent}
+
+@media (max-width:1180px){
+  header{padding-inline:4.5vw}
+  .hero,.section,.contact{padding-inline:4.5vw}
+  nav{gap:20px}
+  .about-grid{gap:4vw}
+  .project-visual{height:330px}
+}
+
+@media (min-width:721px) and (max-width:860px){
+  header{height:72px;padding-inline:5vw}
+  nav{display:none}
+  .mobile{display:grid}
+  .mobile-menu{display:flex;flex-direction:column;position:fixed;z-index:9;top:72px;right:0;left:0;padding:16px 5vw 22px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 14px 24px color-mix(in srgb,var(--ink) 8%,transparent)}
+  .mobile-menu button{min-height:44px;text-align:left;padding:10px 0;font:500 12px 'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase}
+  .hero{min-height:calc(100svh - 72px);padding-top:8vh}
+  .section{padding-top:88px;padding-bottom:88px}
+  .about{padding-top:76px;padding-bottom:80px}
+  .about-grid{grid-template-columns:220px 1fr;gap:4vw}
+  .about-copy{grid-column:1/-1;max-width:660px}
+  .about-portrait{max-width:250px}
+  .project-visual{height:300px}
+}
+
+@media (max-width:720px){
+  .mobile-menu button{min-height:44px;letter-spacing:.06em}
+  .about-portrait{width:min(300px,calc(100% - 16px))}
+  .project-visual a{width:44px;height:44px;right:16px;top:16px}
+  .project-visual.has-media>span{top:16px;left:16px}
+  .section-heading{gap:20px}
+}
+
+@media (max-width:600px){
+  .carousel-work,.carousel-credentials{--cards-per-view:1}
+  .carousel-track{scroll-padding-inline:1px}
+  .carousel-slide{min-width:0}
+  .project-visual{height:clamp(230px,68vw,290px)}
+  .project-copy{padding:20px}
+  .credentials .carousel{margin-top:4px}
+  .cert{min-height:220px}
+}
+
+@media (max-width:420px){
+  header{padding-inline:5vw}
+  .wordmark{font-size:28px}
+  .hero h1{font-size:clamp(42px,13.2vw,56px);letter-spacing:-.075em}
+  .section h2{font-size:clamp(38px,12vw,54px);letter-spacing:-.065em}
+  .hero-bottom{gap:20px}
+  .hero-bottom p{max-width:calc(100% - 74px)}
+  .hero-bottom strong{font-size:9px;line-height:1.55}
+  .about-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .about-stats strong{font-size:25px}
+  .about-stats span{font-size:7px;letter-spacing:.04em}
+  .skills-grid{gap:7px}
+  .invert-card{padding:16px}
+  .socials a,.icon-button,.carousel-controls button{width:44px;height:44px}
+}
+
+@media (hover:none),(pointer:coarse){
+  .icon-button,.carousel-controls button,.socials a{min-width:44px;min-height:44px}
+  .round-link{min-width:64px;min-height:64px}
+  .text-link,.email{min-height:44px;align-items:center}
+  .project-card:hover .project-visual a{opacity:1;transform:none}
+}
+
+@media (max-width:860px) and (max-height:560px) and (orientation:landscape){
+  .hero{min-height:calc(100svh - 70px);padding-top:5vh;padding-bottom:4vh}
+  .hero h1{font-size:clamp(40px,7vw,62px)}
+  .hero-bottom{margin-top:28px}
+  .hero::after{transform:scale(.72);transform-origin:top right}
+}

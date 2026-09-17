@@ -7,4 +7,5 @@ import './certificate-preview.css'
 import './project-media.css'
 import './contact-refinements.css'
 import './section-backgrounds.css'
+import './responsive.css'
 createRoot(document.getElementById('root')).render(<StrictMode><App /></StrictMode>)
