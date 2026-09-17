@@ -1,0 +1,18 @@
+.carousel { --cards-per-view: 4; position: relative; margin-top: 55px; }
+.carousel-controls { position: absolute; right: 0; top: -47px; display: flex; gap: 8px; }
+.carousel-controls button { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--line); border-radius: 50%; transition: opacity .25s ease, background .25s ease, color .25s ease; }
+.carousel-controls button:hover:not(:disabled) { background: var(--ink); color: var(--bg); }
+.carousel-controls button:disabled { opacity: .28; cursor: not-allowed; }
+.carousel-controls svg { width: 17px; }
+.carousel-track { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; cursor: grab; padding: 2px 1px 18px; touch-action: pan-x; }
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track:active { cursor: grabbing; }
+.carousel-slide { flex: 0 0 calc((100% - (var(--cards-per-view) - 1) * 12px) / var(--cards-per-view)); min-width: 0; scroll-snap-align: start; }
+.carousel-slide > * { height: 100%; }
+.carousel-work { --cards-per-view: 3; }
+.carousel-credentials { --cards-per-view: 3; }
+.credentials .carousel { min-width: 0; }
+.carousel .invert-card { height: 100%; }
+@media (max-width: 960px) { .carousel, .carousel-work, .carousel-credentials { --cards-per-view: 2; } }
+@media (max-width: 720px) { .carousel { margin-top: 36px; } .carousel-controls { top: -43px; } .carousel-track { gap: 8px; padding-bottom: 14px; } .carousel-slide { flex-basis: calc((100% - 8px) / 2); } }
+@media (prefers-reduced-motion: reduce) { .carousel-track { scroll-behavior: auto; } }
