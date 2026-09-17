@@ -4,7 +4,7 @@ export const profile = {
   location: 'Based in the Philippines',
   bio: 'I am Yancy Allen and I am currently a computer science student at Polytechnic University of the Philippines. Aspiring to become an IT Professional',
   email: 'tiburcioyancy@gmail.com',
-  photo: '/public/projects/661758638_4310337749282275_4646094461440985142_n (1).jpg',
+  photo: '/projects/661758638_4310337749282275_4646094461440985142_n (1).jpg',
   yearsExperience: 0,
   social: {
     github: 'https://github.com/yncyyalln',
@@ -21,11 +21,11 @@ export const skills = [
 ]
 
 export const projects = [
-  { number: '01', title: 'Northstar', type: 'Product design & frontend', desc: 'A calm, decisive dashboard that turns tangled project signals into a single daily focus.', tags: ['React', 'Design system', 'Analytics'], tone: 'lime', image: '/public/projects/profile.png' },
+  { number: '01', title: 'Northstar', type: 'Product design & frontend', desc: 'A calm, decisive dashboard that turns tangled project signals into a single daily focus.', tags: ['React', 'Design system', 'Analytics'], tone: 'lime', image: '/projects/profile.png' },
   { number: '02', title: 'Common Ground', type: 'Brand site & commerce', desc: 'An editorial storefront built to make a small collection feel tactile, generous, and easy to explore.', tags: ['Next.js', 'Shopify', 'Motion'], tone: 'blue' },
   { number: '03', title: 'Tide Notes', type: 'Mobile concept', desc: 'A lightweight ritual for capturing the ideas worth returning to, without the clutter.', tags: ['React Native', 'UX research', 'Prototype'], tone: 'coral' },
   { number: '04', title: 'Form & Field', type: 'Platform redesign', desc: 'A modular home for an ambitious landscape studio—crafted for imagery, pace, and discovery.', tags: ['Webflow', 'Art direction', 'CMS'], tone: 'lavender' },
-  { number: '05', title: 'Northstar', type: 'Product design & frontend', desc: 'A calm, decisive dashboard that turns tangled project signals into a single daily focus.', tags: ['React', 'Design system', 'Analytics'], tone: 'lime', image: '/public/projects/profile.png' },
+  { number: '05', title: 'Northstar', type: 'Product design & frontend', desc: 'A calm, decisive dashboard that turns tangled project signals into a single daily focus.', tags: ['React', 'Design system', 'Analytics'], tone: 'lime', image: '/projects/profile.png' },
   { number: '06', title: 'Form & Field', type: 'Platform redesign', desc: 'A modular home for an ambitious landscape studio—crafted for imagery, pace, and discovery.', tags: ['Webflow', 'Art direction', 'CMS'], tone: 'lavender' }
 ]
 
