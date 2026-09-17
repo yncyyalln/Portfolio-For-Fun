@@ -1,41 +1,47 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion, useScroll } from 'framer-motion'
-import { ArrowDownRight, ArrowUpRight, Menu, Moon, Sun, X } from 'lucide-react'
-import { profile, skills, projects, certifications } from './data/portfolio'
-import Carousel from './components/Carousel'
+import { Menu, Moon, Sun, X } from 'lucide-react'
+import { certifications, profile, projects, skills } from './data/portfolio'
 import LoadingScreen from './components/LoadingScreen'
+import { AboutSection, ContactSection, CredentialsSection, HeroSection, ProjectsSection, SkillsSection } from './components/PortfolioSections'
 
-const nav = ['About', 'Skills', 'Work', 'Credentials', 'Contact']
-const Icon = ({ children }) => <svg viewBox="0 0 24 24" aria-hidden="true">{children}</svg>
-const GithubIcon = () => <Icon><path fill="currentColor" d="M12 .3C5.37.3 0 5.67 0 12.3c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.28-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.62-5.48 5.92.43.37.81 1.1.81 2.22 0 1.6-.01 2.89-.01 3.29 0 .32.22.69.83.57C20.56 22.1 24 17.6 24 12.3 24 5.67 18.63.3 12 .3z" /></Icon>
-const LinkedinIcon = () => <Icon><path fill="currentColor" d="M22.23 0H1.77C.8 0 0 .77 0 1.73v20.54C0 23.23.8 24 1.77 24h20.46c.98 0 1.77-.77 1.77-1.73V1.73C24 .77 23.2 0 22.23 0zM7.12 20.45H3.56V9h3.56v11.45zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28z" /></Icon>
-const FacebookIcon = () => <Icon><path fill="currentColor" d="M24 12.07C24 5.45 18.63 0 12 0S0 5.45 0 12.07C0 18.06 4.39 23.03 10.13 23.93v-8.39H7.08v-3.47h3.05V9.43c0-3.01 1.79-4.67 4.53-4.67 1.31 0 2.69.24 2.69.24v2.95h-1.51c-1.49 0-1.96.93-1.96 1.87v2.25h3.33l-.53 3.47h-2.8v8.39C19.61 23.03 24 18.06 24 12.07z" /></Icon>
-const Reveal = ({ children, className = '', delay = 0 }) => <motion.div className={className} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: false, amount: .18 }} transition={{ duration: .7, delay, ease: [.22, 1, .36, 1] }}>{children}</motion.div>
-
-function InvertCard({ children, className = '' }) {
-  return <motion.article className={`invert-card ${className}`} whileHover={{ y: -5 }} transition={{ duration: .45, ease: 'easeOut' }}>{children}</motion.article>
-}
+const navigationItems = ['About', 'Skills', 'Work', 'Credentials', 'Contact']
+const sectionIds = { About: 'about', Skills: 'skills', Work: 'projects', Credentials: 'certifications', Contact: 'contact' }
 
 export default function App() {
   const [dark, setDark] = useState(() => localStorage.theme ? localStorage.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches)
-  const [open, setOpen] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const { scrollYProgress } = useScroll()
-  useEffect(() => { document.documentElement.classList.toggle('dark', dark); localStorage.theme = dark ? 'dark' : 'light' }, [dark])
-  useEffect(() => { const timer = window.setTimeout(() => setLoading(false), 650); return () => window.clearTimeout(timer) }, [])
-  const goto = (name) => { document.getElementById(name.toLowerCase().replace('work', 'projects').replace('credentials', 'certifications'))?.scrollIntoView(); setOpen(false) }
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', dark)
+    localStorage.theme = dark ? 'dark' : 'light'
+  }, [dark])
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsLoading(false), 650)
+    return () => window.clearTimeout(timer)
+  }, [])
+
+  const scrollToSection = (label) => {
+    document.getElementById(sectionIds[label])?.scrollIntoView()
+    setIsMenuOpen(false)
+  }
+
   return <>
-    <AnimatePresence>{loading && <LoadingScreen />}</AnimatePresence>
+    <AnimatePresence>{isLoading && <LoadingScreen />}</AnimatePresence>
     <motion.div className="progress" style={{ scaleX: scrollYProgress }} />
-    <header><a className="wordmark" href="#top">{profile.name}<span>.</span></a><nav>{nav.map(n => <button key={n} onClick={() => goto(n)}>{n}</button>)}</nav><div className="header-actions"><button className="icon-button" onClick={() => setDark(!dark)} aria-label="Toggle color theme">{dark ? <Sun /> : <Moon />}</button><button className="icon-button mobile" onClick={() => setOpen(!open)} aria-label="Toggle menu">{open ? <X /> : <Menu />}</button></div></header>
-    {open && <div className="mobile-menu">{nav.map(n => <button key={n} onClick={() => goto(n)}>{n}</button>)}</div>}
-    <motion.main id="top" initial={{ opacity: 0, y: 30 }} animate={loading ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }} transition={{ duration: .75, ease: [.22, 1, .36, 1] }}>
-      <section className="hero"><motion.div className="eyebrow" initial={{ opacity: 0, y: 20 }} animate={loading ? {} : { opacity: 1, y: 0 }} transition={{ duration: .5, delay: .08 }}><i /> AVAILABLE FOR SELECT PROJECTS</motion.div><motion.h1 initial={{ opacity: 0, y: 30 }} animate={loading ? {} : { opacity: 1, y: 0 }} transition={{ duration: .7, delay: .16, ease: [.22, 1, .36, 1] }}>Hi, I am Allen<br /> <em></em>a 2nd year student</motion.h1><motion.div className="hero-bottom" initial={{ opacity: 0, y: 20 }} animate={loading ? {} : { opacity: 1, y: 0 }} transition={{ duration: .6, delay: .27, ease: [.22, 1, .36, 1] }}><p>{profile.role}.<br />{profile.location}.</p><button className="round-link" onClick={() => goto('Work')} aria-label="View selected work"><ArrowDownRight /></button></motion.div></section>
-      <section id="about" className="about section"><Reveal><p className="section-label">01 — ABOUT</p><div className="about-grid"><div className="about-portrait" aria-label="Profile photo">{profile.photo ? <img src={profile.photo} alt={profile.name} /> : <div className="about-portrait-placeholder"><small>PROFILE</small><strong>{profile.name.slice(0, 1)}</strong><span>Photo coming soon</span></div>}</div><h2>A little bit<br />about <em>me.</em></h2><div className="about-copy"><p className="lede">{profile.bio}</p><div className="about-stats">{[{ value: `${profile.yearsExperience}+`, label: 'Years of experience' }, { value: String(projects.length).padStart(2, '0'), label: 'Projects shipped' }, { value: String(certifications.length).padStart(2, '0'), label: 'Certifications' }].map((stat) => <div key={stat.label}><strong>{stat.value}</strong><span>{stat.label}</span></div>)}</div><a className="text-link" href="#contact">More about me <ArrowUpRight /></a></div></div></Reveal></section>
-      <section id="skills" className="section"><Reveal><p className="section-label">02 — EXPERTISE</p><h2>These are some of my<br /><em>Skills.</em></h2></Reveal><Carousel label="Skills">{skills.map(([title, sub, level], i) => <Reveal key={title} delay={i * .08}><InvertCard><span className="card-number">0{i + 1}</span><h3>{title}</h3><p>{sub}</p><div className="bar"><motion.i initial={{ width: 0 }} whileInView={{ width: `${level}%` }} viewport={{ once: true }} transition={{ duration: .8, delay: i * .08 }} /></div><small>{level}%</small></InvertCard></Reveal>)}</Carousel></section>
-      <section id="projects" className="section work"><Reveal><div className="section-heading"><div><p className="section-label">03 — SELECTED WORK</p><h2>Things I've<br /><em>made.</em></h2></div><p className="work-intro">A selection of digital experiences shaped by curiosity and care.</p></div></Reveal><Carousel label="Projects" className="carousel-work">{projects.map((project, i) => <Reveal key={project.title} delay={i * .08}><InvertCard className="project-card"><div className={`project-visual ${project.tone} ${project.image || project.video ? 'has-media' : ''}`}><span>{project.number}</span>{project.video ? <video src={project.video} muted loop autoPlay playsInline /> : project.image ? <img src={project.image} alt={`${project.title} project preview`} /> : <div className="orb" />}<a href="#contact" aria-label={`Ask about ${project.title}`}><ArrowUpRight /></a></div><div className="project-copy"><p>{project.type}</p><h3>{project.title}</h3><span>{project.desc}</span><div>{project.tags.map(t => <b key={t}>{t}</b>)}</div></div></InvertCard></Reveal>)}</Carousel></section>
-      <section id="certifications" className="section credentials"><Reveal><p className="section-label">04 — CREDENTIALS</p><h2>Always<br /><em>learning.</em></h2></Reveal><Carousel label="Credentials" className="carousel-credentials">{certifications.map(({ title, issuer, year, image }, i) => <Reveal key={title} delay={i * .08}><InvertCard className="cert"><span className="cert-number">0{i + 1}</span><div className="cert-details"><h3>{title}</h3><p>{issuer}</p><time>{year}</time></div><ArrowUpRight className="cert-link-icon" /><div className="certificate-preview">{image ? <img src={image} alt={`${title} certificate`} /> : <div className="certificate-placeholder"><small>CREDENTIAL PREVIEW</small><strong>{title}</strong><span>{issuer} · {year}</span></div>}</div></InvertCard></Reveal>)}</Carousel></section>
-      <section id="contact" className="contact"><Reveal><p className="section-label">05 — CONTACT</p><h2>Have a good<br />idea? <em>Let's talk.</em></h2><a className="email" href={`mailto:${profile.email}`}>{profile.email.toLowerCase()} <ArrowUpRight /></a><div className="socials">{[{ label: 'GitHub', href: profile.social.github, icon: <GithubIcon />, external: true }, { label: 'LinkedIn', href: profile.social.linkedin, icon: <LinkedinIcon />, external: true }, { label: 'Facebook', href: profile.social.facebook, icon: <FacebookIcon />, external: true }].map((item) => <a key={item.label} href={item.href} aria-label={item.label} {...(item.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{item.icon}</a>)}</div></Reveal></section>
-    </motion.main><footer><span>© 2026 {profile.name.toUpperCase()}</span><span>DESIGNED & BUILT WITH INTENTION</span><a href="#top">BACK TO TOP ↑</a></footer>
+    <header><a className="wordmark" href="#top">{profile.name}<span>.</span></a><nav>{navigationItems.map((label) => <button key={label} onClick={() => scrollToSection(label)}>{label}</button>)}</nav><div className="header-actions"><button className="icon-button" onClick={() => setDark(!dark)} aria-label="Toggle color theme">{dark ? <Sun /> : <Moon />}</button><button className="icon-button mobile" onClick={() => setIsMenuOpen(!isMenuOpen)} aria-label="Toggle menu">{isMenuOpen ? <X /> : <Menu />}</button></div></header>
+    {isMenuOpen && <div className="mobile-menu">{navigationItems.map((label) => <button key={label} onClick={() => scrollToSection(label)}>{label}</button>)}</div>}
+    <motion.main id="top" initial={{ opacity: 0, y: 30 }} animate={isLoading ? { opacity: 0, y: 30 } : { opacity: 1, y: 0 }} transition={{ duration: .75, ease: [.22, 1, .36, 1] }}>
+      <HeroSection loading={isLoading} onViewWork={() => scrollToSection('Work')} profile={profile} />
+      <AboutSection profile={profile} projects={projects} certifications={certifications} />
+      <SkillsSection skills={skills} />
+      <ProjectsSection projects={projects} />
+      <CredentialsSection certifications={certifications} />
+      <ContactSection profile={profile} />
+    </motion.main>
+    <footer><span>© 2026 {profile.name.toUpperCase()}</span><span>DESIGNED & BUILT WITH INTENTION</span><a href="#top">BACK TO TOP ↑</a></footer>
   </>
 }
