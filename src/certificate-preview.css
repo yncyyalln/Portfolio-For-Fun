@@ -7,13 +7,13 @@
 .cert-link-icon { position:absolute; top:20px; right:20px; width:16px; height:16px; }
 .cert-details { display:grid; justify-items:center; align-content:center; gap:6px; max-width:90%; }
 .cert .cert-details h3 { margin:0; font-size:clamp(19px,1.8vw,23px); line-height:1.08; }
-.cert .cert-details p,.cert .cert-details time { margin:0; font:9px 'DM Mono',monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+.cert .cert-details p,.cert .cert-details time { margin:0; font:9px 'JetBrains Mono',monospace; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
 .cert .cert-details time { padding-top:1px; }
 .certificate-preview { position:absolute; z-index:2; inset:0; display:grid; place-items:center; overflow:hidden; border-radius:inherit; background:var(--inverse); color:var(--inverse-ink); opacity:0; transform:translateY(104%); transition:transform 620ms cubic-bezier(.16,1,.3,1),opacity 350ms ease; }
 .cert:hover .certificate-preview,.cert:focus-within .certificate-preview { opacity:1; transform:translateY(0); }
 .certificate-preview img { display:block; width:100%; height:100%; object-fit:cover; object-position:center; }
 .certificate-placeholder { width:82%; padding:16px; border:1px solid currentColor; text-align:center; display:grid; gap:8px; }
-.certificate-placeholder small,.certificate-placeholder span { font:9px 'DM Mono',monospace; letter-spacing:.08em; }
-.certificate-placeholder strong { font:500 18px 'Playfair Display',serif; letter-spacing:-.02em; }
+.certificate-placeholder small,.certificate-placeholder span { font:9px 'JetBrains Mono',monospace; letter-spacing:.08em; }
+.certificate-placeholder strong { font:600 18px 'Space Grotesk',sans-serif; letter-spacing:-.02em; }
 @media (hover:none),(pointer:coarse) { .carousel-credentials .carousel-slide{min-height:238px}.cert{grid-template-rows:1fr 88px;padding:16px}.cert-details{grid-row:1}.cert-number{top:13px;left:13px}.cert-link-icon{top:13px;right:13px}.certificate-preview{position:relative;inset:auto;grid-row:2;width:100%;height:88px;opacity:1;transform:none;border-radius:8px}.certificate-placeholder{padding:9px;gap:4px}.certificate-placeholder strong{font-size:14px} }
 @media (max-width:720px) { .credentials { padding-top:72px; padding-bottom:72px; } }
