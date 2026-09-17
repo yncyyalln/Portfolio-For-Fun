@@ -28,6 +28,6 @@ export const projects = [
 ]
 
 export const certifications = [
-  { title: 'Associate Data Engineer', issuer: 'DataCamp', year: '2026'},
+  { title: 'Associate Data Engineer', issuer: 'DataCamp', year: '2026', image: 'src/assets/3202c375-9498-49db-a9fc-e20b98adcff8.jpg'},
   { title: 'Github Foundations', issuer: 'DataCamp', year: '2026'}
 ]
